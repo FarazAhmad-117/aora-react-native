@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Image, TextInputProps } from 'react-native'
 import React, { useState } from 'react'
 import { icons } from '@/constants'
 
@@ -8,11 +8,11 @@ type FormFieldProps = {
     handleChangeText: (e: any) => void;
     otherStyles?: string;
     placeholder?: string | undefined;
-    keyboardType?: string;
+    keyboardType?: TextInputProps['keyboardType'];
 }
 
 
-const FormField: React.FC<FormFieldProps> = ({ title, value, handleChangeText, placeholder, otherStyles, keyboardType, ...props }) => {
+const FormField: React.FC<FormFieldProps> = ({ title, value, handleChangeText, placeholder, otherStyles, ...props }) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
 
     return (
@@ -26,6 +26,7 @@ const FormField: React.FC<FormFieldProps> = ({ title, value, handleChangeText, p
                     placeholderTextColor={'#7b7b8b'}
                     onChangeText={handleChangeText}
                     secureTextEntry={title === 'Password' && !showPassword}
+                    {...props}
                 />
                 {title === 'Password' &&
                     <TouchableOpacity onPress={() => setShowPassword(prev => !prev)} >
