@@ -5,7 +5,7 @@ interface GlobalContextType {
     isLoggedIn: boolean;
     setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
     isLoading: boolean;
-    user: Object | null;
+    user: Object | null | any;
     setUser: React.Dispatch<React.SetStateAction<Object | null>>
 }
 
